@@ -13,7 +13,9 @@ export const SocketContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-  currentUser && socket?.emit("newUser", currentUser.id);
+    if (currentUser && socket) {
+      socket.emit("newUser", currentUser.id);
+    }
   }, [currentUser, socket]);
 
   return (

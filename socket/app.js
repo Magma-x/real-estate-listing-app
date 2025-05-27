@@ -6,31 +6,43 @@ const io = new Server({
   },
 });
 
-let onlineUser = [];
+let onlineUsers = [];
 
 const addUser = (userId, socketId) => {
-  const userExits = onlineUser.find((user) => user.userId === userId);
-  if (!userExits) {
-    onlineUser.push({ userId, socketId });
+  const userExists = onlineUsers.find((user) => user.userId === userId);
+  if (!userExists) {
+    onlineUsers.push({ userId, socketId });
+    console.log(`User added: ${userId}, Socket: ${socketId}`);
   }
 };
 
 const removeUser = (socketId) => {
-  onlineUser = onlineUser.filter((user) => user.socketId !== socketId);
+  onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
+  console.log(`User removed: Socket ${socketId}`);
 };
 
 const getUser = (userId) => {
-  return onlineUser.find((user) => user.userId === userId);
+  return onlineUsers.find((user) => user.userId === userId);
 };
 
 io.on("connection", (socket) => {
+  console.log(`New connection: ${socket.id}`);
+
   socket.on("newUser", (userId) => {
     addUser(userId, socket.id);
   });
 
-  socket.on("sendMessage", ({ receiverId, data }) => {
+  socket.on("sendMessage", ({ receiverId, data, chatId }) => {
     const receiver = getUser(receiverId);
-    io.to(receiver.socketId).emit("getMessage", data);
+    if (receiver) {
+      io.to(receiver.socketId).emit("getMessage", {
+        ...data,
+        chatId,
+      });
+      console.log(`Message sent to ${receiverId} for chat ${chatId}`);
+    } else {
+      console.log(`Receiver ${receiverId} not found`);
+    }
   });
 
   socket.on("disconnect", () => {
@@ -38,4 +50,4 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen("4000");
+io.listen(4000);

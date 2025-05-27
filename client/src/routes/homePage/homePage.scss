@@ -3,6 +3,8 @@
 .homePage {
   display: flex;
   height: 100%;
+  position: relative; // Establish stacking context
+  z-index: 1; // Below Navbar (z-index: 1000)
 
   .textContainer {
     flex: 3;
@@ -15,15 +17,15 @@
       gap: 50px;
       height: 100%;
 
-      @include lg{
+      @include lg {
         padding-right: 50px;
       }
 
-      @include md{
+      @include md {
         padding: 0;
       }
 
-      @include sm{
+      @include sm {
         justify-content: flex-start;
       }
 
@@ -65,18 +67,20 @@
     position: relative;
     display: flex;
     align-items: center;
+    overflow: hidden; // Contain the image overflow
 
     @include md {
       display: none;
     }
 
     img {
-      width: 115%;
+      width: 100%; // Contain image within container
+      max-width: 100%; // Prevent overflow
       position: absolute;
       right: 0;
 
       @include lg {
-        width: 105%;
+        width: 100%; // Adjust for lg breakpoint
       }
     }
   }

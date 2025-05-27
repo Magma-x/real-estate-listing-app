@@ -6,18 +6,26 @@ import { format } from "timeago.js";
 import { SocketContext } from "../../context/SocketContext";
 import { useNotificationStore } from "../../lib/notificationStore";
 
-function Chat({ chats }) {
+function Chat({ chats, chatIdToOpen }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { socket } = useContext(SocketContext);
 
   const messageEndRef = useRef();
-
   const decrease = useNotificationStore((state) => state.decrease);
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
+
+  useEffect(() => {
+    if (chatIdToOpen && chats) {
+      const chatToOpen = chats.find((c) => c.id === chatIdToOpen);
+      if (chatToOpen) {
+        handleOpenChat(chatToOpen.id, chatToOpen.receiver);
+      }
+    }
+  }, [chatIdToOpen, chats]);
 
   const handleOpenChat = async (id, receiver) => {
     try {
@@ -45,6 +53,7 @@ function Chat({ chats }) {
       socket.emit("sendMessage", {
         receiverId: chat.receiver.id,
         data: res.data,
+        chatId: chat.id,
       });
     } catch (err) {
       console.log(err);
@@ -99,7 +108,7 @@ function Chat({ chats }) {
         <div className="chatBox">
           <div className="top">
             <div className="user">
-              <img src={chat.receiver.avatar || "noavatar.jpg"} alt="" />
+              <img src={chat.receiver.avatar || "/noavatar.jpg"} alt="" />
               {chat.receiver.username}
             </div>
             <span className="close" onClick={() => setChat(null)}>

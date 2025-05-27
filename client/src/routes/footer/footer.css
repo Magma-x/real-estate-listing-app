@@ -1,0 +1,264 @@
+.footer-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2f343a 100%);
+  color: #fff;
+  padding: 4rem 0 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.footer-column h3::after,
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #ffd700;
+  border-radius: 2px;
+}
+
+.footer-column p {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #ffd700;
+  border-radius: 50%;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #ffea00;
+  transform: rotate(360deg) scale(1.1);
+}
+
+.quick-links ul,
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links li,
+.contact-info li {
+  margin-bottom: 0.8rem;
+}
+
+.quick-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.quick-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffd700;
+  transition: width 0.3s ease;
+}
+
+.quick-links a:hover::after {
+  width: 100%;
+}
+
+.quick-links a:hover {
+  color: #ffd700;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.footer-icon {
+  color: #ffd700;
+  transition: transform 0.3s ease;
+}
+
+.contact-info li:hover .footer-icon {
+  transform: scale(1.2);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.newsletter-form input {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  background: #fff;
+  flex: 1;
+  transition: box-shadow 0.3s ease;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffd700;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #ffea00;
+  transform: scale(1.05);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .footer-container {
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    max-width: 768px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    min-width: 100%;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .newsletter-form input,
+  .btn-primary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    max-width: 640px;
+  }
+
+  .footer-column h3,
+  .footer-column h4 {
+    font-size: 1.1rem;
+  }
+
+  .footer-column p,
+  .quick-links a,
+  .contact-info li {
+    font-size: 0.85rem;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .newsletter-form input,
+  .btn-primary {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+}
