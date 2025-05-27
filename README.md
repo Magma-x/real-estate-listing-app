@@ -128,10 +128,6 @@ The app will be running at `http://localhost:5173`.
 Created by **Abu Huzefa**
 
 - GitHub: [@Magma-x](https://github.com/Magma-x)
-- X.com: [](https://linkedin.com/in/yourprofile)
+- X.com: [@abuhuzefa_](https://x.com/abuhuzefa_)
 
 ---
-
-## 📝 License
-
-This project is licensed under the MIT License.
